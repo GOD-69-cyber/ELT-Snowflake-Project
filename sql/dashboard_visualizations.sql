@@ -1,0 +1,43 @@
+--dynamika nových prípadov podľa krajín
+SELECT
+    DATE AS FULL_DATE,
+    COUNTRY,
+    NEW_CASES
+FROM FACT_COVID_DAILY
+WHERE COUNTRY IN ('India','Brazil')
+ORDER BY DATE, COUNTRY;
+--tempo očkovania v rôznych krajinách
+SELECT
+    DATE AS FULL_DATE,
+    COUNTRY,
+    NEW_VACCINATIONS
+FROM FACT_COVID_DAILY
+WHERE COUNTRY IN ('India','Brazil')
+ORDER BY DATE, COUNTRY;
+--krajiny s najvyšším celkovým počtom infekcií za rok
+SELECT
+    COUNTRY,
+    MAX(CUMULATIVE_CASES) AS TOTAL_CASES
+FROM FACT_COVID_DAILY
+GROUP BY COUNTRY
+ORDER BY TOTAL_CASES DESC
+LIMIT 10;
+--Top 10 krajín s najvyšším počtom nových prípadov v konkrétny deň
+SELECT
+    DATE AS FULL_DATE,
+    COUNTRY,
+    DAILY_CASE_RANK
+FROM FACT_COVID_DAILY
+WHERE DATE = '2021-07-01'
+ORDER BY DAILY_CASE_RANK
+LIMIT 10;
+--dynamiku úmrtnosti na nové infekcie
+SELECT
+    DATE AS FULL_DATE,
+    COUNTRY,
+    NEW_DEATHS,
+    NEW_CASES,
+    (NEW_DEATHS::FLOAT / NULLIF(NEW_CASES,0)) AS DEATH_RATE
+FROM FACT_COVID_DAILY
+WHERE COUNTRY IN ('India','Brazil')
+ORDER BY DATE, COUNTRY;
