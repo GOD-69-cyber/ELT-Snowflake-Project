@@ -48,9 +48,8 @@ Projekt **Global COVID Strategies** analyzuje vývoj pandémie COVID-19 z viacer
 
  ERD zdrojových dát:
 
-```
+
 ![ERD](/img/ERD.png)
-```
 
 ---
 
@@ -134,9 +133,8 @@ Projekt **Global COVID Strategies** analyzuje vývoj pandémie COVID-19 z viacer
 
  Star Schema diagram:
 
-```
 ![Star Schema](/img/star.png)
-```
+
 
 ---
 
